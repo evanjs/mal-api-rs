@@ -301,6 +301,8 @@ pub enum Source {
     PictureBook,
     Radio,
     Music,
+    WebNovel,
+    MixedMedia
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
@@ -320,16 +322,19 @@ pub enum Rating {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
-#[serde(rename_all = "lowercase")]
-#[strum(serialize_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
+#[strum(serialize_all = "snake_case")]
 pub enum MediaTypeAnime {
     Unknown,
-    TV,
+    Tv,
     Ova,
     Movie,
     Special,
     Ona,
     Music,
+    Pv,
+    TvSpecial,
+    Cm
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
@@ -344,6 +349,7 @@ pub enum MediaTypeManga {
     Manhwa,
     Manhua,
     Oel,
+    LightNovel
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
@@ -384,6 +390,7 @@ pub enum DayOfWeek {
     Thursday,
     Friday,
     Saturday,
+    Other
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, PartialEq)]
@@ -418,6 +425,8 @@ pub enum PublishingStatus {
     Finished,
     CurrentlyPublishing,
     NotYetPublished,
+    OnHiatus,
+    Discontinued
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
@@ -442,6 +451,9 @@ pub enum GenreType {
     BoysLove,
     Comedy,
     Drama,
+    #[serde(rename = "Eligible Titles for You Should Read This")]
+    #[strum(serialize = "Eligible Titles for You Should Read This")]
+    EligibleTitlesForYouShouldReadThis,
     Fantasy,
     #[serde(rename = "Girls Love")]
     #[strum(serialize = "Girls Love")]
@@ -511,6 +523,7 @@ pub enum GenreType {
     MartialArts,
     Mecha,
     Medical,
+    Memoir,
     Military,
     Music,
     Mythology,
