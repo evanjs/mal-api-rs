@@ -451,9 +451,6 @@ pub enum GenreType {
     BoysLove,
     Comedy,
     Drama,
-    #[serde(rename = "Eligible Titles for You Should Read This")]
-    #[strum(serialize = "Eligible Titles for You Should Read This")]
-    EligibleTitlesForYouShouldReadThis,
     Fantasy,
     #[serde(rename = "Girls Love")]
     #[strum(serialize = "Girls Love")]
@@ -582,6 +579,10 @@ pub enum GenreType {
     Seinen,
     Shoujo,
     Shounen,
+    // misc
+    #[serde(rename = "Eligible Titles for You Should Read This")]
+    #[strum(serialize = "Eligible Titles for You Should Read This")]
+    EligibleTitlesForYouShouldReadThis,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
