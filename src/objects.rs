@@ -4,6 +4,7 @@ use serde::{Deserialize, Deserializer, Serialize};
 use strum::{Display, EnumString, IntoStaticStr};
 
 #[derive(Clone, Debug, Serialize, Deserialize, DeriveDisplay, PartialEq)]
+#[non_exhaustive]
 pub enum Username {
     #[display("@me")]
     #[serde(rename = "@me")]
@@ -15,6 +16,7 @@ pub enum Username {
 #[derive(
     Copy, Clone, Debug, Serialize, Deserialize, IntoStaticStr, EnumString, Display, PartialEq,
 )]
+#[non_exhaustive]
 #[strum(serialize_all = "snake_case")]
 #[serde(rename_all = "snake_case")]
 pub enum MangaSort {
@@ -28,6 +30,7 @@ pub enum MangaSort {
 #[derive(
     Copy, Clone, Debug, Serialize, Deserialize, IntoStaticStr, EnumString, Display, PartialEq,
 )]
+#[non_exhaustive]
 #[strum(serialize_all = "snake_case")]
 #[serde(rename_all = "snake_case")]
 pub enum AnimeSort {
@@ -41,6 +44,7 @@ pub enum AnimeSort {
 #[derive(
     Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, Display, PartialEq,
 )]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum WatchStatus {
@@ -54,6 +58,7 @@ pub enum WatchStatus {
 #[derive(
     Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, Display, PartialEq,
 )]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum ReadStatus {
@@ -83,69 +88,81 @@ pub struct SingleAnimeItem {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct SingleMangaItem {
     pub node: MangaNode,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct SingleMangaSerializationItem {
     pub node: MangaSerialization,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaList {
     pub data: Vec<MangaItem>,
     pub paging: Option<Paging>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeList {
     pub data: Vec<AnimeItem>,
     pub paging: Option<Paging>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeSingleList {
     pub data: Vec<SingleAnimeItem>,
     pub paging: Option<Paging>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaSingleList {
     pub data: Vec<SingleMangaItem>,
     pub paging: Option<Paging>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Paging {
     pub previous: Option<String>,
     pub next: Option<String>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaItem {
     pub node: MangaNode,
     pub list_status: Option<MangaListStatus>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaRankItem {
     pub node: MangaNode,
     pub ranking: Rank,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Rank {
     pub rank: u64,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeItem {
     pub node: AnimeNode,
     pub list_status: Option<AnimeListStatus>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaNode {
     pub id: u32,
     pub title: String,
@@ -180,12 +197,14 @@ pub struct MangaNode {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Author {
     pub node: Person,
     pub role: String,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Person {
     pub id: u32,
     pub first_name: String,
@@ -193,6 +212,7 @@ pub struct Person {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeNode {
     pub id: u32,
     pub title: String,
@@ -232,6 +252,7 @@ pub struct AnimeNode {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeRelation {
     pub node: AnimeNode,
     pub relation_type: RelationType,
@@ -239,6 +260,7 @@ pub struct AnimeRelation {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct MangaRelation {
     pub node: MangaNode,
     pub relation_type: RelationType,
@@ -246,18 +268,21 @@ pub struct MangaRelation {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeRecommendation {
     pub node: AnimeNode,
     pub num_recommendations: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct MangaRecommendation {
     pub node: MangaNode,
     pub num_recommendations: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 pub enum RelationType {
     Prequel,
@@ -266,12 +291,14 @@ pub enum RelationType {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeNodeStatistics {
     pub status: AnimeNodeStatus,
     pub num_list_users: u64,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeNodeStatus {
     pub watching: u64,
     pub completed: u64,
@@ -281,6 +308,7 @@ pub struct AnimeNodeStatus {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum Source {
@@ -302,10 +330,11 @@ pub enum Source {
     Radio,
     Music,
     WebNovel,
-    MixedMedia
+    MixedMedia,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 #[strum(serialize_all = "lowercase")]
 pub enum Rating {
@@ -322,6 +351,7 @@ pub enum Rating {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum MediaTypeAnime {
@@ -334,10 +364,11 @@ pub enum MediaTypeAnime {
     Music,
     Pv,
     TvSpecial,
-    Cm
+    Cm,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum MediaTypeManga {
@@ -349,10 +380,11 @@ pub enum MediaTypeManga {
     Manhwa,
     Manhua,
     Oel,
-    LightNovel
+    LightNovel,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 #[strum(serialize_all = "lowercase")]
 pub enum Nsfw {
@@ -362,24 +394,28 @@ pub enum Nsfw {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Studio {
     pub id: u32,
     pub name: String,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaSerialization {
     pub id: u32,
     pub name: String,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Broadcast {
     pub day_of_the_week: DayOfWeek,
     pub start_time: NaiveTime,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 #[strum(serialize_all = "lowercase")]
 pub enum DayOfWeek {
@@ -390,16 +426,18 @@ pub enum DayOfWeek {
     Thursday,
     Friday,
     Saturday,
-    Other
+    Other,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Season {
     pub year: u32,
     pub season: SeasonType,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 #[strum(serialize_all = "lowercase")]
 pub enum SeasonType {
@@ -410,6 +448,7 @@ pub enum SeasonType {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum AiringStatus {
@@ -419,6 +458,7 @@ pub enum AiringStatus {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum PublishingStatus {
@@ -426,16 +466,18 @@ pub enum PublishingStatus {
     CurrentlyPublishing,
     NotYetPublished,
     OnHiatus,
-    Discontinued
+    Discontinued,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Genre {
     pub id: u32,
     pub name: GenreType,
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 pub enum GenreType {
     // genres
     Action,
@@ -586,6 +628,7 @@ pub enum GenreType {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AlternativeTitles {
     pub synonyms: Option<Vec<String>>,
     pub en: Option<String>,
@@ -593,12 +636,14 @@ pub struct AlternativeTitles {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Picture {
     pub medium: String,
     pub large: String,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeMyListStatus {
     pub status: WatchStatus,
     pub score: u32,
@@ -617,6 +662,7 @@ pub struct AnimeMyListStatus {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaMyListStatus {
     pub status: ReadStatus,
     pub score: u32,
@@ -637,6 +683,7 @@ pub struct MangaMyListStatus {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeListStatus {
     pub status: WatchStatus,
     pub score: u32,
@@ -646,6 +693,7 @@ pub struct AnimeListStatus {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaListStatus {
     pub status: ReadStatus,
     pub score: u32,
@@ -658,6 +706,7 @@ pub struct MangaListStatus {
 
 // for parameter input on user animelist
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeListItem {
     pub status: WatchStatus,
     pub is_rewatching: bool,
@@ -675,6 +724,7 @@ pub struct AnimeListItem {
 
 // for parameter input on user mangalist
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct MangaListItem {
     pub status: ReadStatus,
     pub is_rereading: bool,
@@ -692,6 +742,7 @@ pub struct MangaListItem {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct User {
     pub id: u32,
     pub name: String,
@@ -706,6 +757,7 @@ pub struct User {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct AnimeStatistics {
     pub num_items_watching: u32,
     pub num_items_completed: u32,
@@ -725,6 +777,7 @@ pub struct AnimeStatistics {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 #[strum(serialize_all = "lowercase")]
 pub enum AnimeRankingType {
@@ -749,6 +802,7 @@ pub enum AnimeRankingType {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 #[strum(serialize_all = "lowercase")]
 pub enum MangaRankingType {
@@ -773,6 +827,7 @@ pub enum MangaRankingType {
 }
 
 #[derive(Copy, Clone, Serialize, Deserialize, Debug, IntoStaticStr, EnumString, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum AnimeSeasonSort {
@@ -781,17 +836,20 @@ pub enum AnimeSeasonSort {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct ForumBoards {
     pub categories: Vec<ForumBoard>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct ForumBoard {
     pub title: String,
     pub boards: Vec<Board>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Board {
     pub id: u32,
     pub title: String,
@@ -800,18 +858,21 @@ pub struct Board {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct SubBoard {
     pub id: u32,
     pub title: String,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct TopicDetail {
     pub data: Topic,
     pub paging: Paging,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Topic {
     pub title: String,
     pub posts: Vec<Post>,
@@ -819,6 +880,7 @@ pub struct Topic {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Post {
     pub id: u64,
     pub number: u64,
@@ -829,6 +891,7 @@ pub struct Post {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct ForumUser {
     pub id: u64,
     pub name: String,
@@ -836,6 +899,7 @@ pub struct ForumUser {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct Poll {
     pub id: u64,
     pub question: String,
@@ -844,6 +908,7 @@ pub struct Poll {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct PollOption {
     pub id: u64,
     pub text: String,
@@ -851,18 +916,21 @@ pub struct PollOption {
 }
 
 #[derive(Copy, Serialize, Clone, Debug, PartialEq)]
+#[non_exhaustive]
 #[serde(rename_all = "lowercase")]
 pub enum ForumSort {
     Recent,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct ForumTopics {
     pub data: Vec<ForumTopic>,
     pub paging: Paging,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
+#[non_exhaustive]
 pub struct ForumTopic {
     pub id: u64,
     pub title: String,
@@ -875,6 +943,7 @@ pub struct ForumTopic {
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[non_exhaustive]
 pub struct PartialDate {
     pub year: u16,
     pub month: Option<u16>,
